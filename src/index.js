@@ -26,42 +26,19 @@ document.addEventListener('keyup', (evt) => {
   keys[evt.code] = false;
 });
 
-function SpawnObstacle() {
-  const size = RandomIntInRange(20, 70);
-  const type = RandomIntInRange(0, 1);
-  const obstacle = new Obstacle(canvas.width + size, canvas.height - size, size, size, '#2484E4');
-
-  if (type == 1) {
-    obstacle.y -= player.originalHeight - 10;
-  }
-  obstacles.push(obstacle);
-}
-
 function RandomIntInRange(min, max) {
   return Math.round(Math.random() * (max - min) + min);
 }
 
-function Start() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+function SpawnObstacle() {
+  const size = RandomIntInRange(20, 70);
+  const type = RandomIntInRange(0, 1);
+  const obstacle = new Obstacle(canvas.width + size, canvas.height - size, size, size, '#2484E4', ctx, gameSpeed);
 
-  ctx.font = '20px sans-serif';
-
-  gameSpeed = 3;
-  gravity = 1;
-
-  score = 0;
-  highscore = 0;
-  if (localStorage.getItem('highscore')) {
-    highscore = localStorage.getItem('highscore');
+  if (type === 1) {
+    obstacle.y -= player.originalHeight - 10;
   }
-
-  player = new Player(25, 0, 50, 50, '#FF5858');
-
-  scoreText = new Text(`Score: ${score}`, 25, 25, 'left', '#212121', '20');
-  highscoreText = new Text(`Highscore: ${highscore}`, canvas.width - 25, 25, 'right', '#212121', '20');
-
-  requestAnimationFrame(Update);
+  obstacles.push(obstacle);
 }
 
 const initialSpawnTimer = 200;
@@ -82,7 +59,7 @@ function Update() {
   }
 
   // Spawn Enemies
-  for (let i = 0; i < obstacles.length; i++) {
+  for (let i = 0; i < obstacles.length; i += 1) {
     const o = obstacles[i];
 
     if (o.x + o.w < 0) {
@@ -119,6 +96,29 @@ function Update() {
   highscoreText.Draw();
 
   gameSpeed += 0.003;
+}
+
+function Start() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  ctx.font = '20px sans-serif';
+
+  gameSpeed = 3;
+  gravity = 1;
+
+  score = 0;
+  highscore = 0;
+  if (localStorage.getItem('highscore')) {
+    highscore = localStorage.getItem('highscore');
+  }
+
+  player = new Player(25, 0, 50, 50, '#FF5858', canvas, ctx, keys, gravity);
+
+  scoreText = new Text(`Score: ${score}`, 25, 25, 'left', '#212121', '20', ctx);
+  highscoreText = new Text(`Highscore: ${highscore}`, canvas.width - 25, 25, 'right', '#212121', '20', ctx);
+
+  requestAnimationFrame(Update);
 }
 
 Start();

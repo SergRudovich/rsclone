@@ -1,12 +1,15 @@
 /* eslint-disable linebreak-style */
 export default class Player {
-  constructor(x, y, w, h, c) {
+  constructor(x, y, w, h, c, canvas, ctx, keys, gravity) {
     this.x = x;
     this.y = y;
     this.w = w;
     this.h = h;
     this.c = c;
-
+    this.canvas = canvas;
+    this.ctx = ctx;
+    this.keys = keys;
+    this.gravity = gravity;
     this.dy = 0;
     this.jumpForce = 15;
     this.originalHeight = h;
@@ -16,13 +19,13 @@ export default class Player {
 
   Animate() {
     // Jump
-    if (keys.Space || keys.KeyW) {
+    if (this.keys.Space || this.keys.KeyW) {
       this.Jump();
     } else {
       this.jumpTimer = 0;
     }
 
-    if (keys.ShiftLeft || keys.KeyS) {
+    if (this.keys.ShiftLeft || this.keys.KeyS) {
       this.h = this.originalHeight / 2;
     } else {
       this.h = this.originalHeight;
@@ -31,13 +34,13 @@ export default class Player {
     this.y += this.dy;
 
     // Gravity
-    if (this.y + this.h < canvas.height) {
-      this.dy += gravity;
+    if (this.y + this.h < this.canvas.height) {
+      this.dy += this.gravity;
       this.grounded = false;
     } else {
       this.dy = 0;
       this.grounded = true;
-      this.y = canvas.height - this.h;
+      this.y = this.canvas.height - this.h;
     }
 
     this.Draw();
@@ -54,9 +57,9 @@ export default class Player {
   }
 
   Draw() {
-    ctx.beginPath();
-    ctx.fillStyle = this.c;
-    ctx.fillRect(this.x, this.y, this.w, this.h);
-    ctx.closePath();
+    this.ctx.beginPath();
+    this.ctx.fillStyle = this.c;
+    this.ctx.fillRect(this.x, this.y, this.w, this.h);
+    this.ctx.closePath();
   }
 }
