@@ -2,6 +2,7 @@
 
 import Player from './player';
 import Obstacle from './obstacle ';
+import Text from './text';
 
 const canvas = document.getElementById('game');
 const ctx = canvas.getContext('2d');
