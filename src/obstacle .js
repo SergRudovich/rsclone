@@ -7,7 +7,8 @@ export default class Obstacle {
     this.h = h;
     this.c = c;
     this.ctx = ctx;
-    this.dx = -gameSpeed;
+    this.gameSpeed = gameSpeed;
+    this.dx = -this.gameSpeed;
   }
 
   Update() {
