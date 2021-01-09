@@ -3,6 +3,7 @@
 import Player from './player';
 import Obstacle from './obstacle ';
 import Text from './text';
+import RandomRange from './random-range';
 
 const canvas = document.getElementById('game');
 const ctx = canvas.getContext('2d');
@@ -26,13 +27,9 @@ document.addEventListener('keyup', (evt) => {
   keys[evt.code] = false;
 });
 
-function RandomIntInRange(min, max) {
-  return Math.round(Math.random() * (max - min) + min);
-}
-
 function SpawnObstacle() {
-  const size = RandomIntInRange(20, 70);
-  const type = RandomIntInRange(0, 1);
+  const size = RandomRange(20, 70);
+  const type = RandomRange(0, 1);
   const obstacle = new Obstacle(canvas.width + size, canvas.height - size, size, size, '#2484E4', ctx, gameSpeed);
 
   if (type === 1) {
@@ -50,7 +47,6 @@ function Update() {
   spawnTimer -= 1;
   if (spawnTimer <= 0) {
     SpawnObstacle();
-    console.log(obstacles);
     spawnTimer = initialSpawnTimer - gameSpeed * 8;
 
     if (spawnTimer < 60) {
