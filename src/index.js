@@ -4,7 +4,7 @@ import Player from './player';
 import Obstacle from './obstacle ';
 import Text from './text';
 import RandomRange from './random-range';
-import FonSound from './fon-sound';
+import GameSound from './game-sound';
 
 const canvas = document.getElementById('game');
 const ctx = canvas.getContext('2d');
@@ -26,7 +26,7 @@ window.gameState = {
   isPlayerSound: true,
 };
 
-const playFon = new FonSound();
+const playSound = new GameSound();
 
 // Event Listeners
 document.addEventListener('keydown', (evt) => {
@@ -56,13 +56,13 @@ function Update() {
   // выключить фоновую музыку
   if (keys.KeyQ) {
     window.gameState.isFonSound = false;
-    playFon.stop();
+    playSound.stopFon();
   }
 
   // включить фоновую музыку
   if (keys.KeyA) {
     window.gameState.isFonSound = true;
-    playFon.play();
+    playSound.playFon();
   }
 
   spawnTimer -= 1;
@@ -89,6 +89,7 @@ function Update() {
         && player.y < o.y + o.h
         && player.y + player.h > o.y
     ) {
+      playSound.playDead();
       obstacles = [];
       score = 0;
       spawnTimer = initialSpawnTimer;
@@ -140,5 +141,5 @@ function Start() {
 
 Start();
 if (window.gameState.isFonSound) {
-  playFon.play();
+  playSound.playFon();
 }
