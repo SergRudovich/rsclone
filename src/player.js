@@ -1,4 +1,5 @@
 /* eslint-disable linebreak-style */
+
 export default class Player {
   constructor(x, y, w, h, c, canvas, ctx, keys, gravity) {
     this.x = x;

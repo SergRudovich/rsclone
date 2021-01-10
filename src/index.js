@@ -4,6 +4,7 @@ import Player from './player';
 import Obstacle from './obstacle ';
 import Text from './text';
 import RandomRange from './random-range';
+import FonSound from './fon-sound';
 
 const canvas = document.getElementById('game');
 const ctx = canvas.getContext('2d');
@@ -18,6 +19,14 @@ let gravity;
 let obstacles = [];
 let gameSpeed;
 const keys = {};
+
+window.gameState = {
+  soundUrl: '.././dist/sound/',
+  isFonSound: false,
+  isPlayerSound: true,
+};
+
+const playFon = new FonSound();
 
 // Event Listeners
 document.addEventListener('keydown', (evt) => {
@@ -43,6 +52,18 @@ let spawnTimer = initialSpawnTimer;
 function Update() {
   requestAnimationFrame(Update);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // выключить фоновую музыку
+  if (keys.KeyQ) {
+    window.gameState.isFonSound = false;
+    playFon.stop();
+  }
+
+  // включить фоновую музыку
+  if (keys.KeyA) {
+    window.gameState.isFonSound = true;
+    playFon.play();
+  }
 
   spawnTimer -= 1;
   if (spawnTimer <= 0) {
@@ -118,3 +139,6 @@ function Start() {
 }
 
 Start();
+if (window.gameState.isFonSound) {
+  playFon.play();
+}
