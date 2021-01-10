@@ -1,4 +1,5 @@
 /* eslint-disable linebreak-style */
+import PlayerSound from './player-sound';
 
 export default class Player {
   constructor(x, y, w, h, c, canvas, ctx, keys, gravity) {
@@ -16,11 +17,13 @@ export default class Player {
     this.originalHeight = h;
     this.grounded = false;
     this.jumpTimer = 0;
+    this.sound = new PlayerSound();
   }
 
   Animate() {
     // Jump
     if (this.keys.Space || this.keys.KeyW) {
+      this.sound.jumpUp();
       this.Jump();
     } else {
       this.jumpTimer = 0;
@@ -28,8 +31,10 @@ export default class Player {
 
     if (this.keys.ShiftLeft || this.keys.KeyS) {
       this.h = this.originalHeight / 2;
+      this.sound.gravityDown();
     } else {
       this.h = this.originalHeight;
+      this.sound.gravityUp();
     }
 
     this.y += this.dy;
@@ -51,6 +56,7 @@ export default class Player {
     if (this.grounded && this.jumpTimer === 0) {
       this.jumpTimer = 1;
       this.dy = -this.jumpForce;
+      this.sound.jumpDown();
     } else if (this.jumpTimer > 0 && this.jumpTimer < 15) {
       this.jumpTimer += 1;
       this.dy = -this.jumpForce - (this.jumpTimer / 50);

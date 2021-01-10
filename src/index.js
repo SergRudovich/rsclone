@@ -22,7 +22,7 @@ const keys = {};
 
 window.gameState = {
   soundUrl: '.././dist/sound/',
-  isFonSound: false,
+  isFonSound: true,
   isPlayerSound: true,
 };
 

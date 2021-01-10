@@ -6,6 +6,7 @@ export default class FonSound {
     this.num = 1;
     this.fonSound = new Audio(`${this.url}run${this.num}.mp3`);
     document.body.appendChild(this.fonSound);
+    this.fonSound.volume = 0.1;
   }
 
   play() {
