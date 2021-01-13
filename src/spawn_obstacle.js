@@ -1,15 +1,27 @@
 import {Obstacle} from './obstacle';
+import ObstacleTwo from './obstacle-two';
 import {canvas} from './index';
 // import {gameSpeed, player, obstacles} from './start_game';
 import {gameSpeed, obstacles} from './start_game';
 
 
 function SpawnObstacle () {
-  let size = RandomIntRange(20, 70);
-  let type = RandomIntRange(0, 1);
-  let obstacle = new Obstacle(
-    canvas.width + size, canvas.height - size, size, size, '#2484E4', gameSpeed
-  );
+  // let size = RandomIntRange(20, 70);
+  // let type = RandomIntRange(0, 1);
+
+  // let obstacle = new Obstacle(
+  //   canvas.width + size, canvas.height - size, size, size, '#2484E4', gameSpeed
+  // );
+  // console.log(canvas.width);
+
+  let obstacle = new ObstacleTwo({
+    x: canvas.width,
+    y: canvas.height,
+    width: 50,
+    height: 50,
+    gameSpeed: gameSpeed,
+  });
+
 
   // if (type == 1) {
   //   obstacle.y -= player.originalHeight - 10;

@@ -19,7 +19,6 @@ export default class PlayerTwo {
 
     this.dy = options.dy || 0;
     this.jumpForce = 15;
-    this.originalHeight = options.height;
     this.grounded = false;
     this.jumpTimer = 0;
 
@@ -39,6 +38,9 @@ export default class PlayerTwo {
           this.frameIndex = 0;
       }
     }
+
+    console.log(this.numberOfFrames)
+
   }
 
   render() {
@@ -64,7 +66,6 @@ export default class PlayerTwo {
     if (this.y + this.height < canvas.height) {
       this.dy += this.gravity;
       this.grounded = false;
-      console.log(this.grounded);
     } else {
       this.dy = 0;
       this.grounded = true;

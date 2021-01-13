@@ -26,35 +26,12 @@ function start () {
 
   document.addEventListener('keydown', (e) => {
     keys[e.code] = true;
-
-    // getJumpImageOne('images/robot-jump.png');
   });
 
   document.addEventListener('keyup', (e) => {
     keys[e.code] = false;
-
-    // getJumpImageOne('images/robot-jump-two.png');
   });
 
-  // function getJumpImageOne(src){
-  //
-  //   if(keys['Space'] == false && jumpTrue == false){
-  //
-  //     console.log(1)
-  //     coinImage.src = src;
-  //     player = new PlayerTwo({
-  //       ctx: canvas.getContext('2d'),
-  //       image: coinImage,
-  //       width: 65,
-  //       height: 100,
-  //       numberOfFrames: 1,
-  //       ticksPerFrame: 1,
-  //       dy: canvas.height - 100,
-  //     });
-  //
-  //     jumpTrue = true;
-  //   }
-  // }
 
 
 
@@ -70,16 +47,13 @@ function start () {
     highScore = localStorage.getItem('highscore');
   }
 
-  // player = new Player(25, 0, 50, 50, '#ff5858');
-  // player = new P layerTwo(25, 0, 50, 50);
-
   coinImage = new Image();
-  coinImage.src = 'images/robot.png';
+  coinImage.src = 'images/sprite2.png';
 
   player = new PlayerTwo({
     ctx: canvas.getContext('2d'),
     image: coinImage,
-    width: 500,
+    width: 600,
     height: 100,
     numberOfFrames: 6,
     ticksPerFrame: 4,
@@ -89,7 +63,6 @@ function start () {
 
   coinImage.onload = function () {
     player.start();
-    console.log(player)
   }
 
 
@@ -124,27 +97,17 @@ function Update () {
   for (let i = 0; i < obstacles.length; i++){
     let o = obstacles[i];
 
-    // console.log(player.x);
-    // console.log('o.x: ', o.x);
-    // console.log('o.width: ', o.width);
-    // console.log('o.width + o.x :', o.width + o.x);
-    //
-    // console.log('player.x: ', player.x);
-    // console.log('player.x + player.width :', player.x + player.width);
-
-    console.log(player)
     if (o.x + o.width < 0){
       obstacles.splice(i, 1);
     }
 
 
     // перезагрузка игры при столкновении
-
     if (
       player.x < o.x + o.width &&
-      player.x + (player.width / 10) > o.x &&
+      player.x + (player.width / 10) - 10 > o.x &&
       player.y < o.y + o.height &&
-      player.y + player.height > o.y
+      player.y + player.height >= o.y
     ) {
       obstacles = [];
       gameSpeed = 3;
@@ -154,9 +117,6 @@ function Update () {
     }
     o.Update();
   }
-  //
-  // player.Animate();
-
 
   score++;
   scoreText.t = "Score: " + score;
