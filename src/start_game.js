@@ -124,14 +124,25 @@ function Update () {
   for (let i = 0; i < obstacles.length; i++){
     let o = obstacles[i];
 
+    // console.log(player.x);
+    // console.log('o.x: ', o.x);
+    // console.log('o.width: ', o.width);
+    // console.log('o.width + o.x :', o.width + o.x);
+    //
+    // console.log('player.x: ', player.x);
+    // console.log('player.x + player.width :', player.x + player.width);
+
+    console.log(player)
     if (o.x + o.width < 0){
       obstacles.splice(i, 1);
     }
+
+
     // перезагрузка игры при столкновении
 
     if (
       player.x < o.x + o.width &&
-      player.x + player.width > o.x &&
+      player.x + (player.width / 10) > o.x &&
       player.y < o.y + o.height &&
       player.y + player.height > o.y
     ) {
@@ -158,7 +169,7 @@ function Update () {
 
   }
 
-  gameSpeed += 0.003;
+  // gameSpeed += 0.003;
   hightScoreText.Draw();
 }
 
