@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  canvas {
+    display: block;
+  }
+
+.ground{
+  width: 100%;
+  height: 300px;
+  background:
+  url(https://res.cloudinary.com/dspfsamgq/image/upload/v1590225630/RunningMan/ground_zedcs5.png);
+
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  animation: ground 1s steps(10) infinite;
+}
+
+@keyframes ground {
+  100% {
+    background-position: 100% 0;
+  }
+}
