@@ -2,11 +2,8 @@ import Hero from './hero';
 import { Text } from './text';
 import { SpawnObstacle } from './spawn_obstacle';
 import {canvas, ctx} from './index';
-<<<<<<< HEAD
 import { createSnowFlakes, updateSnowFall } from './snow_flakes';
-=======
 import GameSound from './game-sound';
->>>>>>> develop
 
 let gravity;
 let score;
@@ -75,11 +72,8 @@ function start () {
     `Highscore: ${highScore}`, canvas.width - 25, 25, "right", "#212121", "20"
   );
 
-<<<<<<< HEAD
   createSnowFlakes();
-=======
   playSound.playFon();
->>>>>>> develop
 
   requestAnimationFrame(Update);
 }
