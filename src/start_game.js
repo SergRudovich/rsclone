@@ -22,7 +22,7 @@ let jumpTrue = false;
 function start () {
 
   canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  canvas.height = window.innerHeight - 205;
 
   document.addEventListener('keydown', (e) => {
     keys[e.code] = true;
@@ -31,8 +31,6 @@ function start () {
   document.addEventListener('keyup', (e) => {
     keys[e.code] = false;
   });
-
-
 
 
   ctx.font = "20px sans-serif";
