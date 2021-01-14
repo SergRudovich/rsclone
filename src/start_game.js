@@ -2,7 +2,11 @@ import Hero from './hero';
 import { Text } from './text';
 import { SpawnObstacle } from './spawn_obstacle';
 import {canvas, ctx} from './index';
+<<<<<<< HEAD
 import { createSnowFlakes, updateSnowFall } from './snow_flakes';
+=======
+import GameSound from './game-sound';
+>>>>>>> develop
 
 let gravity;
 let score;
@@ -18,6 +22,7 @@ let keys = {};
 let coinImage;
 let jumpTrue = false;
 
+const playSound = new GameSound();
 
 function start () {
 
@@ -70,7 +75,11 @@ function start () {
     `Highscore: ${highScore}`, canvas.width - 25, 25, "right", "#212121", "20"
   );
 
+<<<<<<< HEAD
   createSnowFlakes();
+=======
+  playSound.playFon();
+>>>>>>> develop
 
   requestAnimationFrame(Update);
 }
@@ -81,6 +90,18 @@ let spawnTimer = initialSpawnTimer;
 function Update () {
   requestAnimationFrame(Update);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // выключить фоновую музыку
+  if (keys.KeyQ) {
+    // window.gameState.isFonSound = false;
+    playSound.stopFon();
+  }
+
+  // включить фоновую музыку
+  if (keys.KeyA) {
+    // window.gameState.isFonSound = true;
+    playSound.playFon();
+  }
 
   spawnTimer--;
   if (spawnTimer <= 0) {
@@ -111,6 +132,7 @@ function Update () {
       player.y < o.y + o.height &&
       player.y + player.height >= o.y
     ) {
+      playSound.playDead();
       obstacles = [];
       gameSpeed = 3;
       score = 0;

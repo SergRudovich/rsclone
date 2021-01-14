@@ -1,6 +1,6 @@
 import {canvas, ctx} from './index';
 import {keys} from './start_game';
-
+import PlayerSound from './player-sound';
 
 export default class Hero {
   constructor(options) {
@@ -25,6 +25,8 @@ export default class Hero {
     this.y = options.y;
     this.x = options.x;
     this.gravity = 1;
+
+    this.sound = new PlayerSound();
   }
 
   update() {
@@ -71,7 +73,7 @@ export default class Hero {
   // jump
   getReadyToJump() {
     if(keys['Space'] || keys['KeyW']){
-
+      this.sound.jumpUp();
       this.Jump();
     } else {
       this.jumpTimer = 0;
@@ -82,7 +84,7 @@ export default class Hero {
     if (this.grounded && this.jumpTimer == 0) {
       this.jumpTimer = 1;
       this.dy = -this.jumpForce;
-
+      this.sound.jumpDown();
     } else if (this.jumpTimer > 0 && this.jumpTimer < 15) {
       this.jumpTimer++;
       this.dy = -this.jumpForce - (this.jumpTimer / 50);
