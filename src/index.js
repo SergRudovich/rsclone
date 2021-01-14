@@ -1,4 +1,4 @@
-import { Player } from './player';
+// import { Hero } from './hero';
 import { Obstacle } from './obstacle';
 import { Text } from './text';
 import { start } from './start_game';

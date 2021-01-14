@@ -1,5 +1,4 @@
-import {Obstacle} from './obstacle';
-import ObstacleTwo from './obstacle-two';
+import Obstacle from './obstacle';
 import {canvas} from './index';
 // import {gameSpeed, player, obstacles} from './start_game';
 import {gameSpeed, obstacles} from './start_game';
@@ -10,7 +9,7 @@ function SpawnObstacle () {
   let type = RandomIntRange(3, 4);
 
 
-  let obstacle = new ObstacleTwo({
+  let obstacle = new Obstacle({
     x: canvas.width,
     y: canvas.height,
     width: 50,

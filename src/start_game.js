@@ -1,8 +1,8 @@
-import { Player } from './player';
-import  PlayerTwo  from './playerTwo';
+import Hero from './hero';
 import { Text } from './text';
 import { SpawnObstacle } from './spawn_obstacle';
 import {canvas, ctx} from './index';
+import { createSnowFlakes, updateSnowFall } from './snow_flakes';
 
 let gravity;
 let score;
@@ -48,7 +48,7 @@ function start () {
   coinImage = new Image();
   coinImage.src = 'images/sprite2.png';
 
-  player = new PlayerTwo({
+  player = new Hero({
     ctx: canvas.getContext('2d'),
     image: coinImage,
     width: 600,
@@ -59,10 +59,9 @@ function start () {
     y: 50,
   });
 
-  coinImage.onload = function () {
+  window.onload = function () {
     player.start();
   }
-
 
   scoreText = new Text(
     `Score: ${score}`, 25, 25, "left", "#212121", "20"
@@ -70,6 +69,9 @@ function start () {
   hightScoreText = new Text(
     `Highscore: ${highScore}`, canvas.width - 25, 25, "right", "#212121", "20"
   );
+
+  createSnowFlakes();
+
   requestAnimationFrame(Update);
 }
 
@@ -89,6 +91,8 @@ function Update () {
       spawnTimer = 60;
     }
   }
+
+  updateSnowFall();
 
   // spawn enemies
 

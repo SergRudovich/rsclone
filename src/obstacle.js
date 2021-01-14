@@ -1,28 +1,32 @@
 import {canvas, ctx} from './index.js';
 
 
-export class Obstacle {
-  constructor (x, y, width, height, color, gameSpeed) {
-    this.x = x;
-    this.y = y;
-    this.width = width;
-    this.height = height;
-    this.color = color;
-    this.gameSpeed = gameSpeed;
+export default class Obstacle {
+  constructor (options) {
+    this.x = options.x;
+    this.y = options.y;
+    this.width = options.width;
+    this.height = options.height;
+    this.gameSpeed = options.gameSpeed;
 
     this.dx = -this.gameSpeed;
+    this.counter = 0;
+
+    this.image = new Image();
+    this.image.src = options.imageSrc;
   }
 
   Update () {
     this.x += this.dx;
-    this.Draw();
-    this.dx = -this.gameSpeed;
+    this.render();
   }
 
-  Draw () {
-    ctx.beginPath();
-    ctx.fillStyle = this.color;
-    ctx.fillRect(this.x, this.y, this.width, this.height);
-    ctx.closePath();
+  render() {
+    ctx.drawImage(
+      this.image,
+      this.x,
+      canvas.height - 55,
+    )
   }
+
 }

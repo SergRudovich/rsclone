@@ -2,7 +2,7 @@ import {canvas, ctx} from './index';
 import {keys} from './start_game';
 
 
-export default class PlayerTwo {
+export default class Hero {
   constructor(options) {
     this.ctx = options.ctx;
 
@@ -38,14 +38,9 @@ export default class PlayerTwo {
           this.frameIndex = 0;
       }
     }
-
-    console.log()
-
   }
 
   render() {
-    this.ctx.clearRect(0, 0, this.width / this.numberOfFrames, this.height);
-
     this.ctx.drawImage(
       this.image,
       this.frameIndex * this.width / this.numberOfFrames,
