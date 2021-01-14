@@ -13,7 +13,7 @@ export default class ObstacleTwo {
     this.counter = 0;
 
     this.image = new Image();
-    this.image.src = 'images/obstacle3.png';
+    this.image.src = options.imageSrc;
   }
 
   Update () {

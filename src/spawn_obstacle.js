@@ -7,12 +7,8 @@ import {gameSpeed, obstacles} from './start_game';
 
 function SpawnObstacle () {
   // let size = RandomIntRange(20, 70);
-  // let type = RandomIntRange(0, 1);
+  let type = RandomIntRange(3, 4);
 
-  // let obstacle = new Obstacle(
-  //   canvas.width + size, canvas.height - size, size, size, '#2484E4', gameSpeed
-  // );
-  // console.log(canvas.width);
 
   let obstacle = new ObstacleTwo({
     x: canvas.width,
@@ -20,6 +16,7 @@ function SpawnObstacle () {
     width: 50,
     height: 50,
     gameSpeed: gameSpeed,
+    imageSrc: `images/obstacle${type}.png`,
   });
 
 

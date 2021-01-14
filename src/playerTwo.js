@@ -39,7 +39,7 @@ export default class PlayerTwo {
       }
     }
 
-    console.log(this.numberOfFrames)
+    console.log()
 
   }
 
