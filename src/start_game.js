@@ -121,8 +121,8 @@ function Update () {
 
     // перезагрузка игры при столкновении
     if (
-      player.x < o.x + o.width &&
-      player.x + (player.width / 10) - 10 > o.x &&
+      player.dx < o.x + o.width &&
+      player.dx + (player.width / 10) - 10 > o.x &&
       player.y < o.y + o.height &&
       player.y + player.height >= o.y
     ) {
@@ -147,7 +147,7 @@ function Update () {
 
   }
 
-  // gameSpeed += 0.003;
+  gameSpeed += 0.003;
   hightScoreText.Draw();
 }
 

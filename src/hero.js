@@ -1,5 +1,5 @@
-import {canvas, ctx} from './index';
-import {keys} from './start_game';
+import { canvas, ctx } from './index';
+import { keys } from './start_game';
 import PlayerSound from './player-sound';
 
 export default class Hero {
@@ -16,8 +16,8 @@ export default class Hero {
     this.width = options.width;
     this.height = options.height;
 
-
     this.dy = options.dy || 0;
+    this.dx = 0;
     this.jumpForce = 15;
     this.grounded = false;
     this.jumpTimer = 0;
@@ -35,9 +35,9 @@ export default class Hero {
     if (this.tickCount > this.ticksPerFrame) {
       this.tickCount = 0;
       if (this.frameIndex < this.numberOfFrames - 1) {
-          this.frameIndex++;
+        this.frameIndex++;
       } else {
-          this.frameIndex = 0;
+        this.frameIndex = 0;
       }
     }
   }
@@ -49,11 +49,11 @@ export default class Hero {
       0,
       this.width / this.numberOfFrames,
       this.height,
-      0,
+      this.dx,
       this.y,
       this.width / this.numberOfFrames,
-      this.height
-    )
+      this.height,
+    );
   }
 
   // gravity
@@ -72,15 +72,21 @@ export default class Hero {
 
   // jump
   getReadyToJump() {
-    if(keys['Space'] || keys['KeyW']){
+    if (keys.Space || keys.KeyW) {
       this.sound.jumpUp();
       this.Jump();
     } else {
       this.jumpTimer = 0;
     }
+    if (keys.KeyM) {
+      if (this.dx < canvas.width - 100) this.dx += 5;
+    }
+    if (keys.KeyN) {
+      if (this.dx > 0) this.dx -= 5;
+    }
   }
 
-  Jump () {
+  Jump() {
     if (this.grounded && this.jumpTimer == 0) {
       this.jumpTimer = 1;
       this.dy = -this.jumpForce;
@@ -91,16 +97,15 @@ export default class Hero {
     }
   }
 
-
   start() {
-    let loop = () => {
+    const loop = () => {
       this.update();
       this.render();
       this.gravityGo();
       this.getReadyToJump();
 
       window.requestAnimationFrame(loop);
-    }
+    };
 
     window.requestAnimationFrame(loop);
   }
