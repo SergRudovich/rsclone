@@ -1,12 +1,13 @@
 import {canvas, ctx} from './index.js';
 
 
-export default class Obstacle {
+export default class Platform {
   constructor (options) {
     this.x = options.x;
     this.y = options.y;
     this.width = options.width;
     this.height = options.height;
+    this.flightAltitude = options.flightAltitude;
     this.gameSpeed = options.gameSpeed;
 
     this.dx = -this.gameSpeed;
@@ -24,8 +25,11 @@ export default class Obstacle {
     ctx.drawImage(
       this.image,
       this.x,
-      canvas.height - 55,
+      canvas.height - this.flightAltitude,
     )
   }
 
 }
+
+
+

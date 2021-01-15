@@ -4,8 +4,6 @@ import PlayerSound from './player-sound';
 
 export default class Hero {
   constructor(options) {
-    this.ctx = options.ctx;
-
     this.image = options.image;
 
     this.frameIndex = 0;
@@ -26,6 +24,9 @@ export default class Hero {
     this.x = options.x;
     this.gravity = 1;
 
+    // platform
+    this.test = options.test;
+
     this.sound = new PlayerSound();
   }
 
@@ -43,7 +44,7 @@ export default class Hero {
   }
 
   render() {
-    this.ctx.drawImage(
+    ctx.drawImage(
       this.image,
       this.frameIndex * this.width / this.numberOfFrames,
       0,
@@ -57,16 +58,30 @@ export default class Hero {
   }
 
   // gravity
+  // gravityGo() {
+  //   console.log(this.test)
+  //   this.y += this.dy;
+
+  //   if (this.y + this.height < canvas.height) {
+  //     this.dy += this.gravity;
+  //     this.grounded = false;
+  //   } else {
+  //     this.dy = 0;
+  //     this.grounded = true;
+  //     this.y = canvas.height - this.height;
+  //   }
+  // }
+  
   gravityGo() {
     this.y += this.dy;
 
-    if (this.y + this.height < canvas.height) {
+    if (this.y + this.height < this.test) {
       this.dy += this.gravity;
       this.grounded = false;
     } else {
       this.dy = 0;
       this.grounded = true;
-      this.y = canvas.height - this.height;
+      this.y = this.test - this.height;
     }
   }
 

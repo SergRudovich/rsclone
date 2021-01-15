@@ -2,9 +2,6 @@
 let canvas = document.querySelector('#game');
 let ctx = canvas.getContext('2d');
 
-console.log(canvas)
-
-
 let particlesOnScreen = 245;
 let w, h;
 let particlesArray = [];

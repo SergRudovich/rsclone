@@ -5,6 +5,8 @@ import {canvas, ctx} from './index';
 import { createSnowFlakes, updateSnowFall } from './snow_flakes';
 import GameSound from './game-sound';
 
+import getPlatform from './get_platform';
+
 let gravity;
 let score;
 let highScore;
@@ -14,12 +16,14 @@ let hightScoreText;
 let gameSpeed;
 let player;
 let obstacles = [];
+let bigPlatform;
+let mediumPlatform;
 
 let keys = {};
 let coinImage;
 let jumpTrue = false;
 
-const playSound = new GameSound();
+// const playSound = new GameSound();
 
 function start () {
 
@@ -51,7 +55,6 @@ function start () {
   coinImage.src = 'images/sprite2.png';
 
   player = new Hero({
-    ctx: canvas.getContext('2d'),
     image: coinImage,
     width: 600,
     height: 100,
@@ -59,6 +62,7 @@ function start () {
     ticksPerFrame: 4,
     x: 50,
     y: 50,
+    test: canvas.height,
   });
 
   window.onload = function () {
@@ -73,7 +77,7 @@ function start () {
   );
 
   createSnowFlakes();
-  playSound.playFon();
+  // playSound.playFon();
 
   requestAnimationFrame(Update);
 }
@@ -97,6 +101,7 @@ function Update () {
     playSound.playFon();
   }
 
+  // spawn obstacles
   spawnTimer--;
   if (spawnTimer <= 0) {
     SpawnObstacle();
@@ -110,7 +115,6 @@ function Update () {
   updateSnowFall();
 
   // spawn enemies
-
   for (let i = 0; i < obstacles.length; i++){
     let o = obstacles[i];
 
@@ -126,7 +130,7 @@ function Update () {
       player.y < o.y + o.height &&
       player.y + player.height >= o.y
     ) {
-      playSound.playDead();
+      // playSound.playDead();
       obstacles = [];
       gameSpeed = 3;
       score = 0;
@@ -139,17 +143,19 @@ function Update () {
   score++;
   scoreText.t = "Score: " + score;
 
+
   scoreText.Draw();
 
   if (score > highScore) {
     highScore = score;
     hightScoreText.t = `Highscore: ${highScore}`;
-
   }
 
-  // gameSpeed += 0.003;
+  gameSpeed += 0.003;
   hightScoreText.Draw();
+
+  // spawn platform
+  getPlatform();
 }
 
-// export {start, gameSpeed, obstacles, player};
-export {start, gameSpeed, obstacles, keys};
+export {start, gameSpeed, obstacles, keys, score, player};
