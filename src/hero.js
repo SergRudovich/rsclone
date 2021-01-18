@@ -82,6 +82,7 @@ export default class Hero {
       this.dy += this.gravity;
       this.grounded = false;
       if (this.dy > 0) {
+        this.numberOfFrames = 1;
         if (this.isLeft) {
           this.sx = 300;
         } else {

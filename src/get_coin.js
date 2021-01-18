@@ -30,8 +30,8 @@ export default function getCoin () {
       coin.start();
       
       if (
-        player.x < coin.x + coin.width &&
-        player.x + (player.width / 10) - 10 > coin.x &&
+        player.dx < coin.x + coin.width &&
+        player.dx + (player.width / 10) - 10 > coin.x &&
         player.y < coin.y + coin.height &&
         player.y + player.height >= coin.y
       ) {
