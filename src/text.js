@@ -8,6 +8,15 @@ export class Text {
     this.a = a;
     this.c = c;
     this.s = s;
+    this.counter = 0;
+  }
+
+  getCounter() {
+    return this.counter;
+  }
+
+  upCounter() {
+    this.counter = this.counter + 1;
   }
 
   Draw () {

@@ -6,19 +6,36 @@ import {gameSpeed} from './start_game';
 
 let platform;
 let platforms = [];
+let platformsOptions = [
+  {
+    src: `images/platforma1.png`,
+    width: 495,
+    height: 115,
+  },
+  {
+    src: `images/platforma2.png`,
+    width: 280,
+    height: 115,
+  }
+];
+
+
 
 export default function getPlatform(){
   
   if(score % 300 == 0){    
 
+    let type = getRandomInt(0, 2);
+    type = platformsOptions[type];
+
     platform = new Platform({
       x: canvas.width,
       y: canvas.height,
       flightAltitude: 250,
-      width: 495,
-      height: 115,
+      width: type.width,
+      height: type.height,
       gameSpeed: gameSpeed,
-      imageSrc: `images/platforma1.png`,
+      imageSrc: type.src,
     });
 
     platforms.push(platform)
