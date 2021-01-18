@@ -4,6 +4,8 @@ import { SpawnObstacle } from './spawn_obstacle';
 import {canvas, ctx} from './index';
 import { createSnowFlakes, updateSnowFall } from './snow_flakes';
 import GameSound from './game-sound';
+import getCoin from './get_coin';
+
 
 import getPlatform from './get_platform';
 
@@ -16,12 +18,14 @@ let hightScoreText;
 let gameSpeed;
 let player;
 let obstacles = [];
-let bigPlatform;
-let mediumPlatform;
+let coins = [];
+
 
 let keys = {};
 let coinImage;
 let jumpTrue = false;
+
+// let coin;
 
 // const playSound = new GameSound();
 
@@ -54,6 +58,7 @@ function start () {
   coinImage = new Image();
   coinImage.src = 'images/sprite2.png';
 
+
   player = new Hero({
     image: coinImage,
     width: 600,
@@ -67,7 +72,12 @@ function start () {
 
   window.onload = function () {
     player.start();
+    // coin.start();
   }
+  
+  // coin = getCoin();
+  // coin.start()
+  // console.log(coin)
 
   scoreText = new Text(
     `Score: ${score}`, 25, 25, "left", "#212121", "20"
@@ -112,6 +122,9 @@ function Update () {
     }
   }
 
+  // spawn coin
+  // spawnCoin();
+
   updateSnowFall();
 
   // spawn enemies
@@ -151,11 +164,14 @@ function Update () {
     hightScoreText.t = `Highscore: ${highScore}`;
   }
 
-  gameSpeed += 0.003;
+  // gameSpeed += 0.003;
   hightScoreText.Draw();
 
   // spawn platform
   getPlatform();
+
+  // spawn coin
+  getCoin();
 }
 
-export {start, gameSpeed, obstacles, keys, score, player};
+export {start, gameSpeed, obstacles, keys, score, player, coins};

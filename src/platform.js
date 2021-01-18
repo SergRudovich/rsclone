@@ -28,7 +28,6 @@ export default class Platform {
       canvas.height - this.flightAltitude,
     )
   }
-
 }
 
 
