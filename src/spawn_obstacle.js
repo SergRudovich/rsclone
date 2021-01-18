@@ -18,11 +18,6 @@ function SpawnObstacle () {
     imageSrc: `images/obstacle${type}.png`,
   });
 
-
-  // if (type == 1) {
-  //   obstacle.y -= player.originalHeight - 10;
-  // }
-
   obstacles.push(obstacle);
 }
 

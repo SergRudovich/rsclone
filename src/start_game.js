@@ -1,9 +1,12 @@
 import Hero from './hero';
 import { Text } from './text';
 import { SpawnObstacle } from './spawn_obstacle';
-import {canvas, ctx} from './index';
+import { canvas, ctx } from './index';
 import { createSnowFlakes, updateSnowFall } from './snow_flakes';
 import GameSound from './game-sound';
+import getCoin from './get_coin';
+
+import getPlatform from './get_platform';
 
 let gravity;
 let score;
@@ -14,15 +17,17 @@ let hightScoreText;
 let gameSpeed;
 let player;
 let obstacles = [];
+const coins = [];
 
-let keys = {};
+const keys = {};
 let coinImage;
-let jumpTrue = false;
+const jumpTrue = false;
+
+// let coin;
 
 const playSound = new GameSound();
 
-function start () {
-
+function start() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight - 205;
 
@@ -34,8 +39,7 @@ function start () {
     keys[e.code] = false;
   });
 
-
-  ctx.font = "20px sans-serif";
+  ctx.font = '20px sans-serif';
 
   gameSpeed = 3;
   gravity = 1;
@@ -43,7 +47,7 @@ function start () {
   score = 0;
   highScore = 0;
 
-  if(localStorage.getItem('highscore')){
+  if (localStorage.getItem('highscore')) {
     highScore = localStorage.getItem('highscore');
   }
 
@@ -51,7 +55,6 @@ function start () {
   coinImage.src = 'images/sprite2.png';
 
   player = new Hero({
-    ctx: canvas.getContext('2d'),
     image: coinImage,
     width: 600,
     height: 100,
@@ -59,29 +62,35 @@ function start () {
     ticksPerFrame: 4,
     x: 50,
     y: 50,
+    test: canvas.height,
   });
 
   window.onload = function () {
     player.start();
-  }
+    // coin.start();
+  };
+
+  // coin = getCoin();
+  // coin.start()
+  // console.log(coin)
 
   scoreText = new Text(
-    `Score: ${score}`, 25, 25, "left", "#212121", "20"
+    `Score: ${score}`, 25, 25, 'left', '#212121', '20',
   );
   hightScoreText = new Text(
-    `Highscore: ${highScore}`, canvas.width - 25, 25, "right", "#212121", "20"
+    `Highscore: ${highScore}`, canvas.width - 25, 25, 'right', '#212121', '20',
   );
 
   createSnowFlakes();
-  playSound.playFon();
+  // playSound.playFon();
 
   requestAnimationFrame(Update);
 }
 
-let initialSpawnTimer = 200;
+const initialSpawnTimer = 200;
 let spawnTimer = initialSpawnTimer;
 
-function Update () {
+function Update() {
   requestAnimationFrame(Update);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -97,7 +106,8 @@ function Update () {
     playSound.playFon();
   }
 
-  spawnTimer--;
+  // spawn obstacles
+  spawnTimer -= 1;
   if (spawnTimer <= 0) {
     SpawnObstacle();
     spawnTimer = initialSpawnTimer - gameSpeed * 8;
@@ -107,24 +117,25 @@ function Update () {
     }
   }
 
+  // spawn coin
+  // spawnCoin();
+
   updateSnowFall();
 
   // spawn enemies
+  for (let i = 0; i < obstacles.length; i += 1) {
+    const o = obstacles[i];
 
-  for (let i = 0; i < obstacles.length; i++){
-    let o = obstacles[i];
-
-    if (o.x + o.width < 0){
+    if (o.x + o.width < 0) {
       obstacles.splice(i, 1);
     }
 
-
     // перезагрузка игры при столкновении
     if (
-      player.dx < o.x + o.width &&
-      player.dx + (player.width / 10) - 10 > o.x &&
-      player.y < o.y + o.height &&
-      player.y + player.height >= o.y
+      player.dx < o.x + o.width
+      && player.dx + (player.width / 10) - 10 > o.x
+      && player.y < o.y + o.height
+      && player.y + player.height >= o.y
     ) {
       playSound.playDead();
       obstacles = [];
@@ -136,20 +147,26 @@ function Update () {
     o.Update();
   }
 
-  score++;
-  scoreText.t = "Score: " + score;
+  score += 1;
+  scoreText.t = `Score: ${score}`;
 
   scoreText.Draw();
 
   if (score > highScore) {
     highScore = score;
     hightScoreText.t = `Highscore: ${highScore}`;
-
   }
 
   gameSpeed += 0.003;
   hightScoreText.Draw();
+
+  // spawn platform
+  getPlatform();
+
+  // spawn coin
+  getCoin();
 }
 
-// export {start, gameSpeed, obstacles, player};
-export {start, gameSpeed, obstacles, keys};
+export {
+  start, gameSpeed, obstacles, keys, score, player, coins,
+};
