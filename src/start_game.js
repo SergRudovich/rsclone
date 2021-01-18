@@ -4,6 +4,10 @@ import { SpawnObstacle } from './spawn_obstacle';
 import {canvas, ctx} from './index';
 import { createSnowFlakes, updateSnowFall } from './snow_flakes';
 import GameSound from './game-sound';
+import getCoin from './get_coin';
+
+
+import getPlatform from './get_platform';
 
 let gravity;
 let score;
@@ -14,12 +18,16 @@ let hightScoreText;
 let gameSpeed;
 let player;
 let obstacles = [];
+let coins = [];
+
 
 let keys = {};
 let coinImage;
 let jumpTrue = false;
 
-const playSound = new GameSound();
+// let coin;
+
+// const playSound = new GameSound();
 
 function start () {
 
@@ -50,8 +58,8 @@ function start () {
   coinImage = new Image();
   coinImage.src = 'images/sprite2.png';
 
+
   player = new Hero({
-    ctx: canvas.getContext('2d'),
     image: coinImage,
     width: 600,
     height: 100,
@@ -59,11 +67,17 @@ function start () {
     ticksPerFrame: 4,
     x: 50,
     y: 50,
+    test: canvas.height,
   });
 
   window.onload = function () {
     player.start();
+    // coin.start();
   }
+  
+  // coin = getCoin();
+  // coin.start()
+  // console.log(coin)
 
   scoreText = new Text(
     `Score: ${score}`, 25, 25, "left", "#212121", "20"
@@ -73,7 +87,7 @@ function start () {
   );
 
   createSnowFlakes();
-  playSound.playFon();
+  // playSound.playFon();
 
   requestAnimationFrame(Update);
 }
@@ -97,6 +111,7 @@ function Update () {
     playSound.playFon();
   }
 
+  // spawn obstacles
   spawnTimer--;
   if (spawnTimer <= 0) {
     SpawnObstacle();
@@ -107,10 +122,12 @@ function Update () {
     }
   }
 
+  // spawn coin
+  // spawnCoin();
+
   updateSnowFall();
 
   // spawn enemies
-
   for (let i = 0; i < obstacles.length; i++){
     let o = obstacles[i];
 
@@ -126,7 +143,7 @@ function Update () {
       player.y < o.y + o.height &&
       player.y + player.height >= o.y
     ) {
-      playSound.playDead();
+      // playSound.playDead();
       obstacles = [];
       gameSpeed = 3;
       score = 0;
@@ -139,17 +156,22 @@ function Update () {
   score++;
   scoreText.t = "Score: " + score;
 
+
   scoreText.Draw();
 
   if (score > highScore) {
     highScore = score;
     hightScoreText.t = `Highscore: ${highScore}`;
-
   }
 
   gameSpeed += 0.003;
   hightScoreText.Draw();
+
+  // spawn platform
+  getPlatform();
+
+  // spawn coin
+  getCoin();
 }
 
-// export {start, gameSpeed, obstacles, player};
-export {start, gameSpeed, obstacles, keys};
+export {start, gameSpeed, obstacles, keys, score, player, coins};
