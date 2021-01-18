@@ -20,6 +20,8 @@ export default class Coin {
 
     this.image = new Image();
     this.image.src = './images/coin.png';
+
+    this.audioObj = new Audio('./sound/coin2.mp3');
   }
 
   update() {
@@ -49,6 +51,10 @@ export default class Coin {
       this.width / this.numberOfFrames,
       this.height
     )
+  }
+
+  playCoinSound() {
+    this.audioObj.play();
   }
 
   start() {

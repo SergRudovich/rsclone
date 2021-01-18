@@ -4,26 +4,45 @@ import Coin from './coin';
 import {gameSpeed} from './start_game';
 
 let coin;
+let coins = [];
 
 export default function getCoin () {
 
   if(score % 200 == 0) { 
-  
+
     coin = new Coin({
       x: canvas.width,
-      y: 250,
+      y: 350,
       width: 504,
       height: 84,
       numberOfFrames: 6,
       ticksPerFrame: 4,
       gameSpeed: gameSpeed,
     });
+
+    coins.push(coin);
   }
 
-  if(coin){
-    coin.start();
-  }
-  
 
-  // console.log(coin)
+  if(coins.length > 0) {
+
+    coins.forEach(coin => {
+      coin.start();
+      
+      if (
+        player.x < coin.x + coin.width &&
+        player.x + (player.width / 10) - 10 > coin.x &&
+        player.y < coin.y + coin.height &&
+        player.y + player.height >= coin.y
+      ) {
+        
+        coin.y = 10000;
+        coin.playCoinSound();
+      }
+
+      if (coin.x < -50) { 
+        coin.y = 10000;
+      }
+    });
+  }
 }
