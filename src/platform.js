@@ -16,7 +16,7 @@ export default class Platform {
     this.image.src = options.imageSrc;
   }
 
-  Update () {
+  update () {
     this.x += this.dx;
     this.render();
   }
@@ -28,6 +28,17 @@ export default class Platform {
       canvas.height - this.flightAltitude,
     )
   }
+
+  // start() {
+  //   let loop = () => {
+  //     this.update();
+  //     this.render();
+
+  //     window.requestAnimationFrame(loop);
+  //   }
+
+  //   window.requestAnimationFrame(loop);
+  // }
 }
 
 

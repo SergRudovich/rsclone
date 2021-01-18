@@ -1,41 +1,70 @@
 import {score, player } from './start_game';
 import spawnPlatform from './spawn_platform';
 import {canvas} from './index';
+import Platform from './Platform';
+import {gameSpeed} from './start_game';
 
-let testPlatform;
+let platform;
+let platforms = [];
 
 export default function getPlatform(){
-  if(score % 400 == 0 && score != 800){    
+  
+  if(score % 300 == 0){    
 
-    let rund = getRandomInt(1, 3);
-
-    testPlatform = spawnPlatform({
-      src: `images/platforma${rund}.png`,
+    platform = new Platform({
+      x: canvas.width,
+      y: canvas.height,
+      flightAltitude: 250,
       width: 495,
       height: 115,
-      flightAltitude: 250,
+      gameSpeed: gameSpeed,
+      imageSrc: `images/platforma1.png`,
     });
+
+    platforms.push(platform)
   } 
-  
-  
 
-  if(testPlatform) {
+  if(platforms) {
     
-    if (testPlatform.x + testPlatform.width < 0){
-      testPlatform.x = 100000;
-    }
-
-    if(
-      player.x > testPlatform.x
-      && player.y < canvas.height - testPlatform.flightAltitude
-      )
-      {
-        player.test = canvas.height - testPlatform.flightAltitude + 2
-      } else {
-        player.test = canvas.height;
-      }
-      testPlatform.Update();
+    platforms.map(platform => {
+      platform.update();
+      
+      if(
+        player.x > platform.x
+        && player.y < canvas.height - platform.flightAltitude
+        )
+        {
+          player.test = canvas.height - platform.flightAltitude + 2
+        } else {
+          player.test = canvas.height;
+        }
+    });
   }
+
+  
+
+  // if(platform) {
+  //   platform.update();  
+  //   console.log(platform);
+
+  //   if (platform.x + platform.width < 0){
+  //     platform.x = 100000;
+  //   }
+
+  //   if(
+  //     player.x > platform.x
+  //     && player.y < canvas.height - platform.flightAltitude
+  //     )
+  //     {
+  //       player.test = canvas.height - platform.flightAltitude + 2
+  //     } else {
+  //       player.test = canvas.height;
+  //     }
+    
+  // }
+
+    // platforms.push(platform);
+  
 } 
 
 function getRandomInt(min, max) {
