@@ -1,7 +1,7 @@
 import { canvas, ctx } from './index';
 import { keys } from './start_game';
 import PlayerSound from './player-sound';
-
+import main from './pages/main';
 export default class Hero {
   constructor(options) {
     this.image = options.image;
@@ -34,12 +34,12 @@ export default class Hero {
   }
 
   update() {
-    this.tickCount++;
+    this.tickCount += 1;
 
     if (this.tickCount > this.ticksPerFrame) {
       this.tickCount = 0;
       if (this.frameIndex < this.numberOfFrames - 1) {
-        this.frameIndex++;
+        this.frameIndex += 1;
       } else {
         this.frameIndex = 0;
       }
@@ -49,7 +49,7 @@ export default class Hero {
   render() {
     ctx.drawImage(
       this.image,
-      this.frameIndex * this.width / this.numberOfFrames,
+      (this.frameIndex * this.width) / this.numberOfFrames,
       this.sx,
       this.width / this.numberOfFrames,
       this.height,
@@ -104,23 +104,26 @@ export default class Hero {
 
   // jump
   getReadyToJump() {
-    if (keys.Space || keys.KeyW) {
+    if (keys.Space || keys.KeyW || keys.ArrowUp) {
       this.sound.jumpUp();
       this.Jump();
     } else {
       this.jumpTimer = 0;
     }
-    if (keys.KeyM) {
+    if (keys.KeyM || keys.ArrowRight) {
       if (this.dx < canvas.width - 100) this.dx += 5;
       this.sx = 0;
       this.isLeft = false;
       this.numberOfFrames = 6;
     }
-    if (keys.KeyN) {
+    if (keys.KeyN || keys.ArrowLeft) {
       if (this.dx > 0) this.dx -= 5;
       this.sx = 100;
       this.isLeft = true;
       this.numberOfFrames = 6;
+    }
+    if (keys.Escape) {
+      window.location.reload();
     }
   }
 
@@ -130,7 +133,7 @@ export default class Hero {
       this.dy = -this.jumpForce;
       this.sound.jumpDown();
     } else if (this.jumpTimer > 0 && this.jumpTimer < 15) {
-      this.jumpTimer++;
+      this.jumpTimer += 1;
       this.dy = -this.jumpForce - (this.jumpTimer / 50);
       this.numberOfFrames = 1;
       if (this.isLeft) {
@@ -150,7 +153,8 @@ export default class Hero {
 
       window.requestAnimationFrame(loop);
     };
-
-    window.requestAnimationFrame(loop);
+    this.image.onload = () => {
+      window.requestAnimationFrame(loop);
+    };
   }
 }

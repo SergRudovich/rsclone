@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Permanent Marker', cursive;
   }
   canvas {
     display: block;
@@ -25,3 +26,136 @@
     background-position: 100% 0;
   }
 }
+.page-wrapper {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+ }
+ 
+ .page {
+  position: absolute;
+  background-color: white;
+  width: 60vw;
+  height: 97vh;
+  margin-top: 10px;
+  margin-left: 20vw;
+ }
+ 
+ /* фоновое изображение */
+ 
+ .page-image{
+  background-image: url(img/fon.jpg);
+  background-size: cover;
+ }
+ 
+ .help-txt-wrapper {
+  background-color: white;
+  opacity: 0.8;
+  width: 50vw;
+  height: 40vh;
+  margin-top: 20vh;
+  margin-left: 4.4vw;
+  padding: 10px;
+  color: red;
+  text-align: center;
+  font-size: 1.4rem;
+ }
+ 
+ /* стили кнопки */
+ 
+ .btnflip {
+   position: absolute;
+   top: 43%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   width: 200px;
+   height: 60px;
+   text-align: center;
+   transform-style: preserve-3d;
+   perspective: 1000px;
+   transform-origin: center center;
+ }
+ 
+ .btnflip-item {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   text-align: center;
+   line-height: 60px;
+   font-size: 24px;
+   background-color: rgba(255,255,255, .05);
+   transform-style: preserve-3d;
+   backface-visibility: hidden;
+   border-radius: 30px;
+   text-transform: uppercase;
+   color: #fff;
+   transition: 1s;
+ }
+ .btnflip-item.btnflip__front {
+   transform: rotateX(0deg) translateZ(20px);
+ }
+ .btnflip:hover .btnflip-item.btnflip__front {
+   transform: rotateX(-180deg) translateZ(20px);
+ }
+ .btnflip-item.btnflip__back {
+   transform: rotateX(180deg) translateZ(20px);
+ }
+ .btnflip:hover .btnflip-item.btnflip__back {
+   transform: rotateX(0deg) translateZ(20px);
+ }
+ .btnflip-item.btnflip__center {
+   background: linear-gradient(to left, #c31a5b, #7129bd);
+ }
+ .btnflip-item.btnflip__center::before {
+   content: '';
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background: linear-gradient(to left, #ffdd1f, #c31a5b);
+   border-radius: 30px;
+   transform: translateZ(-1px);
+ }
+ .btnflip:hover .btnflip-item.btnflip__center {
+   transform: rotateX(-180deg);
+ }
+ 
+ /* позиция кнопок  */
+ 
+ .start-main {
+   top: 40%;
+   left: 50%;
+ }
+ 
+ .options-main {
+   top: 55%;
+   left: 50%;
+ }
+ 
+ .help-main {
+   top: 70%;
+   left: 50%;
+ }
+ 
+ .start-help {
+   top: 80%;
+   left: 30%;
+ }
+ 
+ .options-help {
+   top: 80%;
+   left: 70%;
+ }
+ 
+ /* спрятать блок */
+ 
+ .hidden {
+  display: none;
+ }
+ 

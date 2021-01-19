@@ -65,10 +65,10 @@ function start() {
     test: canvas.height,
   });
 
-  window.onload = function () {
+  // window.onload = function () {
     player.start();
     // coin.start();
-  };
+  // };
 
   // coin = getCoin();
   // coin.start()
@@ -82,8 +82,7 @@ function start() {
   );
 
   createSnowFlakes();
-  // playSound.playFon();
-
+  playSound.playFon();
   requestAnimationFrame(Update);
 }
 
