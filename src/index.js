@@ -2,6 +2,7 @@
 import { Obstacle } from './obstacle';
 import { Text } from './text';
 import { start } from './start_game';
+import main from './pages/main';
 
 // let keys = {};
 
@@ -26,7 +27,8 @@ const ctx = canvas.getContext('2d');
 //   keys[e.code] = false;
 // });
 
-start();
+main();
+// start();
 
 // export {canvas, ctx, keys}
 export { canvas, ctx };
