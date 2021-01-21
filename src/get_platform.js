@@ -1,6 +1,7 @@
 import { score, player, gameSpeed } from './start_game';
 import { canvas } from './index';
 import Platform from './Platform';
+import getRandomInt from './get_random_int';
 
 let platform;
 let platforms = [];
@@ -21,7 +22,7 @@ let platformsOptions = [
 
 export default function getPlatform(){
   
-  if(score % 300 == 0){    
+  if(score % 200 == 0){    
 
     let type = getRandomInt(0, 2);
     type = platformsOptions[type];
@@ -39,45 +40,23 @@ export default function getPlatform(){
     platforms.push(platform);
   }
 
-  if (platforms) {
-    platforms.map((platform) => {
-      platform.update();
-      if (
-        (player.dx > platform.x && player.dx < platform.x + platform.width - 40)
-        && player.y < canvas.height - platform.flightAltitude
-      ) {
-        player.test = canvas.height - platform.flightAltitude + 2;
-      } else {
+
+  let flag = false;
+
+  for(let platform of platforms) {
+    platform.update();
+
+    if (
+      (player.dx > platform.x && player.dx < platform.x + platform.width - 40)
+      && player.y < canvas.height - platform.flightAltitude
+    ) {
+      player.test = canvas.height - platform.flightAltitude + 2;
+      flag = true;
+    } else {
+      if (!flag) {
         player.test = canvas.height;
+        flag = false;
       }
-    });
+    }
   }
-
-  // if(platform) {
-  //   platform.update();
-  //   console.log(platform);
-
-  //   if (platform.x + platform.width < 0){
-  //     platform.x = 100000;
-  //   }
-
-  //   if(
-  //     player.x > platform.x
-  //     && player.y < canvas.height - platform.flightAltitude
-  //     )
-  //     {
-  //       player.test = canvas.height - platform.flightAltitude + 2
-  //     } else {
-  //       player.test = canvas.height;
-  //     }
-
-  // }
-
-  // platforms.push(platform);
-}
-
-function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min)) + min; // Максимум не включается, минимум включается
 }

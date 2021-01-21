@@ -1,5 +1,6 @@
 import { score } from './start_game';
 import  Cloud  from './cloud';
+import getRandomInt from './get_random_int';
 
 let clouds = [
   {
@@ -37,10 +38,4 @@ export default function getClouds() {
   if(cloud) {
     cloud.update();
   }
-}
-
-function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min)) + min; // Максимум не включается, минимум включается
 }
