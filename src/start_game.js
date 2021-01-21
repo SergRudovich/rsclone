@@ -4,8 +4,7 @@ import { SpawnObstacle } from './spawn_obstacle';
 import { canvas, ctx } from './index';
 import { createSnowFlakes, updateSnowFall } from './snow_flakes';
 import GameSound from './game-sound';
-// import getCoin from './get_coin';
-import {getCoin} from './get_coin';
+import {getCoin, coinsCounter} from './get_coin';
 
 import getPlatform from './get_platform';
 
@@ -24,8 +23,6 @@ const keys = {};
 let coinImage;
 const jumpTrue = false;
 
-export let coinsText;
-// let coinsCounter = 0;
 
 const playSound = new GameSound();
 
@@ -72,18 +69,12 @@ function start() {
     // coin.start();
   // };
 
-  // coin = getCoin();
-  // coin.start()
-  // console.log(coin)
 
   scoreText = new Text(
     `Score: ${score}`, 25, 25, 'left', '#212121', '20',
   );
   hightScoreText = new Text(
     `Highscore: ${highScore}`, canvas.width - 25, 25, 'right', '#212121', '20',
-  );
-  coinsText = new Text(
-    `Coins: 0`, 350, 25, "right", "#212121", "20"
   );
   
   createSnowFlakes();
@@ -121,9 +112,6 @@ function Update() {
     }
   }
 
-  // spawn coin
-  // spawnCoin();
-
   updateSnowFall();
 
   // spawn enemies
@@ -145,9 +133,7 @@ function Update() {
       obstacles = [];
       gameSpeed = 3;
       score = 0;
-      // coinsCounter = 0;
-      coinsText.counter = 0;
-      console.log(coinsText)
+      coinsCounter.counter = 0;
       spawnTimer = initialSpawnTimer;
       window.localStorage.setItem('highscore', highScore);
     }
@@ -172,8 +158,6 @@ function Update() {
 
   // spawn coin
   getCoin();
-  coinsText.Draw();
-  console.log()
 }
 
 export {
