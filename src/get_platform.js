@@ -1,5 +1,4 @@
 import { score, player, gameSpeed } from './start_game';
-import spawnPlatform from './spawn_platform';
 import { canvas } from './index';
 import Platform from './Platform';
 
