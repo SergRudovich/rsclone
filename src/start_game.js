@@ -5,6 +5,7 @@ import { canvas, ctx } from './index';
 import { createSnowFlakes, updateSnowFall } from './snow_flakes';
 import GameSound from './game-sound';
 import {getCoin, coinsCounter} from './get_coin';
+import getClouds from './get_clouds';
 
 import getPlatform from './get_platform';
 
@@ -66,7 +67,6 @@ function start() {
 
   // window.onload = function () {
     player.start();
-    // coin.start();
   // };
 
 
@@ -158,6 +158,9 @@ function Update() {
 
   // spawn coin
   getCoin();
+
+  // spawn clouds
+  getClouds();
 }
 
 export {
