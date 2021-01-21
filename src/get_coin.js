@@ -3,6 +3,7 @@ import {canvas} from './index';
 import Coin from './coin';
 import {gameSpeed} from './start_game';
 import { Text } from './text';
+import { lang } from './lang';
 
 let coin;
 let coins = [];
@@ -20,7 +21,7 @@ export let coinsCounter = {
 function getCoin () {
 
   coinsText = new Text(
-    `Coins: ${coinsCounter.counter}`, 350, 25, "right", "#212121", "20"
+    `${lang[localStorage.getItem('langSelected')].coinsTxt} ${coinsCounter.counter}`, 350, 25, "right", "#212121", "20"
   );
 
   coinsText.Draw();

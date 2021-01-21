@@ -33,7 +33,7 @@
   height: 100vh;
   margin: 0;
   padding: 0;
-  background-color: white;
+  background-color:  #87ceeb;
  }
  
  .page {
@@ -56,7 +56,7 @@
   background-color: white;
   opacity: 0.8;
   width: 50vw;
-  height: 40vh;
+  height: 50vh;
   margin-top: 20vh;
   margin-left: 4.4vw;
   padding: 10px;
@@ -160,3 +160,10 @@
   display: none;
  }
  
+ /* страница настроек */
+
+#selectLang{
+  height: 1.4rem;
+  font-size: 1rem;
+  color: red;
+}

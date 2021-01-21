@@ -4,9 +4,9 @@ import { SpawnObstacle } from './spawn_obstacle';
 import { canvas, ctx } from './index';
 import { createSnowFlakes, updateSnowFall } from './snow_flakes';
 import GameSound from './game-sound';
-import {getCoin, coinsCounter} from './get_coin';
+import { getCoin, coinsCounter } from './get_coin';
 import getClouds from './get_clouds';
-
+import { lang } from './lang';
 import getPlatform from './get_platform';
 
 let gravity;
@@ -23,8 +23,6 @@ const coins = [];
 const keys = {};
 let coinImage;
 const jumpTrue = false;
-
-
 const playSound = new GameSound();
 
 function start() {
@@ -66,17 +64,16 @@ function start() {
   });
 
   // window.onload = function () {
-    player.start();
+  player.start();
   // };
 
-
   scoreText = new Text(
-    `Score: ${score}`, 25, 25, 'left', '#212121', '20',
+    `${lang[localStorage.getItem('langSelected')].scoreTxt} ${score}`, 25, 25, 'left', '#212121', '20',
   );
   hightScoreText = new Text(
-    `Highscore: ${highScore}`, canvas.width - 25, 25, 'right', '#212121', '20',
+    `${lang[localStorage.getItem('langSelected')].bestScoreTxt} ${highScore}`, canvas.width - 25, 25, 'right', '#212121', '20',
   );
-  
+
   createSnowFlakes();
   // playSound.playFon();
   requestAnimationFrame(Update);
@@ -141,13 +138,13 @@ function Update() {
   }
 
   score += 1;
-  scoreText.t = `Score: ${score}`;
+  scoreText.t = `${lang[localStorage.getItem('langSelected')].scoreTxt} ${score}`;
 
   scoreText.Draw();
 
   if (score > highScore) {
     highScore = score;
-    hightScoreText.t = `Highscore: ${highScore}`;
+    hightScoreText.t = `${lang[localStorage.getItem('langSelected')].bestScoreTxt} ${highScore}`;
   }
 
   gameSpeed += 0.003;
