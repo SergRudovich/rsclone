@@ -3,29 +3,31 @@ import { canvas } from '../index';
 import { start } from '../start_game';
 import help from './help';
 import options from './options';
+import { lang } from '../lang';
 
 export default function main() {
   canvas.classList.add('hidden');
+  const lg = localStorage.getItem('langSelected');
   const pageWrapper = document.querySelector('.page-wrapper');
   const page = document.querySelector('.page') || document.createElement('div');
   page.classList.add('page', 'page-image');
   page.innerHTML = `
 <a class="btnflip start-main start" href="#">
-		<span class="btnflip-item btnflip__front">Start Game</span>
+		<span class="btnflip-item btnflip__front">${lang[lg].startGameBtn}</span>
 		<span class="btnflip-item btnflip__center"></span>
-		<span class="btnflip-item btnflip__back">Start Game</span>
+		<span class="btnflip-item btnflip__back">${lang[lg].startGameBtn}</span>
 </a>
 
 <a class="btnflip options-main options" href="#">
-		<span class="btnflip-item btnflip__front">Options</span>
+		<span class="btnflip-item btnflip__front">${lang[lg].optionsBtn}</span>
 		<span class="btnflip-item btnflip__center"></span>
-		<span class="btnflip-item btnflip__back">Options</span>
+		<span class="btnflip-item btnflip__back">${lang[lg].optionsBtn}</span>
 </a>
 
 <a class="btnflip help-main help" href="#">
-		<span class="btnflip-item btnflip__front">Help</span>
+		<span class="btnflip-item btnflip__front">${lang[lg].helpBtn}</span>
 		<span class="btnflip-item btnflip__center"></span>
-		<span class="btnflip-item btnflip__back">Help</span>
+		<span class="btnflip-item btnflip__back">${lang[lg].helpBtn}</span>
 </a>
 
   `;

@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 // import { Hero } from './hero';
 import { Obstacle } from './obstacle';
 import { Text } from './text';
@@ -8,6 +9,8 @@ import main from './pages/main';
 
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
+
+if (!localStorage.getItem('langSelected')) localStorage.setItem('langSelected', 'en');
 
 // window.gameState = {
 //   soundUrl: '.././dist/sound/',

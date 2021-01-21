@@ -10,6 +10,7 @@ export class Text {
     this.s = s;
   }
 
+ 
   Draw () {
     ctx.beginPath();
     ctx.fillStyle = this.c;

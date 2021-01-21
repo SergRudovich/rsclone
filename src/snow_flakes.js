@@ -45,10 +45,14 @@ function drawSnowFlakes () {
       particlesArray[i].radius,
     );
 
-    gradient.addColorStop(0, `rgba(30, 144, 255, ${particlesArray[i].opacity})` );
-    gradient.addColorStop(0.8, `rgba(100, 149, 237, ${particlesArray[i].opacity})` );
-    gradient.addColorStop(1, `rgba(65, 105, 225, ${particlesArray[i].opacity})` );
+    // gradient.addColorStop(0, `rgba(30, 144, 255, ${particlesArray[i].opacity})` );
+    // gradient.addColorStop(0.8, `rgba(100, 149, 237, ${particlesArray[i].opacity})` );
+    // gradient.addColorStop(1, `rgba(65, 105, 225, ${particlesArray[i].opacity})` );
 
+    gradient.addColorStop(0, "rgba(255, 255, 255," + particlesArray[i].opacity + ")");  // white
+    gradient.addColorStop(.8, "rgba(210, 236, 242," + particlesArray[i].opacity + ")");  // bluish
+    gradient.addColorStop(1, "rgba(237, 247, 249," + particlesArray[i].opacity + ")");
+    
     ctx.beginPath();
     ctx.arc(
       particlesArray[i].x,
