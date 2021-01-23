@@ -6,6 +6,9 @@ export default class Coin {
     this.x = options.x;
     this.y = options.y;
     this.width = options.width;
+
+    console.log(this.width)
+
     this.height = options.height;
     
     this.ticksPerFrame = options.ticksPerFrame || 0;

@@ -72,7 +72,7 @@ function getCoin () {
       coin.start();
       
       if (
-        player.dx < coin.x + coin.width &&
+        player.dx < coin.x + (coin.width / 6) &&
         player.dx + (player.width / 10) - 10 > coin.x &&
         player.y < coin.y + coin.height &&
         player.y + player.height >= coin.y
