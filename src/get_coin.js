@@ -4,6 +4,7 @@ import Coin from './coin';
 import {gameSpeed} from './start_game';
 import { Text } from './text';
 import { lang } from './lang';
+import  getRandomInt  from './get_random_int';
 
 let coin;
 let coins = [];
@@ -16,6 +17,20 @@ export let coinsCounter = {
   counter: 0,
 };
 
+let coinY;
+let randTime;
+let randY = [
+  {
+    y: 350,
+  },
+  {
+    y: 600,
+  },
+  {
+    y: 300,
+  },
+];
+
 
 
 function getCoin () {
@@ -26,11 +41,20 @@ function getCoin () {
 
   coinsText.Draw();
 
-  if(score % 200 == 0) { 
+
+
+  if(score % 200 == 0) {
+    randTime = getRandomInt(20, 100);
+    randTime += 200;
+    coinY = randY[getRandomInt(0, 3)];
+  }
+
+
+  if(score % randTime == 0) { 
 
     coin = new Coin({
       x: canvas.width,
-      y: 350,
+      y: coinY.y,
       width: 504,
       height: 84,
       numberOfFrames: 6,
