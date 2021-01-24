@@ -13,7 +13,7 @@ export default class Cloud {
     this.dWidth = options.sWidth;
     this.dHeight = options.sHeight;
 
-    this.dx = -gameSpeed;
+    this.dx = -gameSpeed / gameSpeed;
 
     this.image = new Image();
     this.image.src = options.src;

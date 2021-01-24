@@ -4,25 +4,34 @@ import Platform from './Platform';
 import getRandomInt from './get_random_int';
 
 let platform;
+
+let randTime;
+let platformRandTime = [200, 220, 250, 300];
+
 let platforms = [];
 let platformsOptions = [
   {
     src: `images/platforma1.png`,
     width: 495,
     height: 115,
+    flightAltitude: 250,
   },
   {
     src: `images/platforma2.png`,
     width: 280,
     height: 115,
+    flightAltitude: 300,
   }
 ];
 
 
-
 export default function getPlatform(){
+
+  if(score % 200 == 0){
+    randTime = platformRandTime[getRandomInt(0, 4)];
+  }
   
-  if(score % 200 == 0){    
+  if(score % randTime == 0){    
 
     let type = getRandomInt(0, 2);
     type = platformsOptions[type];
@@ -30,7 +39,7 @@ export default function getPlatform(){
     platform = new Platform({
       x: canvas.width,
       y: canvas.height,
-      flightAltitude: 250,
+      flightAltitude: type.flightAltitude,
       width: type.width,
       height: type.height,
       gameSpeed: gameSpeed,

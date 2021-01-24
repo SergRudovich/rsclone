@@ -2,7 +2,7 @@ import { score } from './start_game';
 import  Cloud  from './cloud';
 import getRandomInt from './get_random_int';
 
-let clouds = [
+let cloudsSet = [
   {
     src: `images/clouds.png`,
     sx: 0,
@@ -26,16 +26,21 @@ let clouds = [
 ];
 
 let cloud;
+let clouds = [];
 let random;
 
 export default function getClouds() {
-  if(score % 250 == 0){   
+  if(score % 500 == 0){   
     
-    random = clouds[getRandomInt(0, 2)];
+    random = cloudsSet[getRandomInt(0, 2)];
     cloud = new Cloud(random);
+
+    clouds.push(cloud);
   }
 
-  if(cloud) {
-    cloud.update();
-  }
+ 
+    clouds.map(cloud => {
+      cloud.update();
+    });
+  
 }
