@@ -1,8 +1,7 @@
-import {canvas, ctx} from './index.js';
-
+import { canvas, ctx } from './index';
 
 export default class Platform {
-  constructor (options) {
+  constructor(options) {
     this.x = options.x;
     this.y = options.y;
     this.width = options.width;
@@ -16,7 +15,7 @@ export default class Platform {
     this.image.src = options.imageSrc;
   }
 
-  update () {
+  update() {
     this.x += this.dx;
     this.render();
   }
@@ -26,20 +25,6 @@ export default class Platform {
       this.image,
       this.x,
       canvas.height - this.flightAltitude,
-    )
+    );
   }
-
-  // start() {
-  //   let loop = () => {
-  //     this.update();
-  //     this.render();
-
-  //     window.requestAnimationFrame(loop);
-  //   }
-
-  //   window.requestAnimationFrame(loop);
-  // }
 }
-
-
-

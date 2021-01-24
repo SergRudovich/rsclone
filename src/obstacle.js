@@ -1,8 +1,7 @@
-import {canvas, ctx} from './index.js';
-
+import { canvas, ctx } from './index.js';
 
 export default class Obstacle {
-  constructor (options) {
+  constructor(options) {
     this.x = options.x;
     this.y = options.y;
     this.width = options.width;
@@ -15,7 +14,7 @@ export default class Obstacle {
     this.image.src = options.imageSrc;
   }
 
-  Update () {
+  Update() {
     this.x += this.dx;
     this.render();
   }
@@ -25,7 +24,6 @@ export default class Obstacle {
       this.image,
       this.x,
       canvas.height - 55,
-    )
+    );
   }
-
 }

@@ -1,16 +1,15 @@
-import {canvas, ctx} from './index';
+import { canvas, ctx } from './index';
 
 export default class Coin {
-
-  constructor (options) {
+  constructor(options) {
     this.x = options.x;
     this.y = options.y;
     this.width = options.width;
 
-    console.log(this.width)
+    console.log(this.width);
 
     this.height = options.height;
-    
+
     this.ticksPerFrame = options.ticksPerFrame || 0;
     this.numberOfFrames = options.numberOfFrames || 1;
 
@@ -35,9 +34,9 @@ export default class Coin {
     if (this.tickCount > this.ticksPerFrame) {
       this.tickCount = 0;
       if (this.frameIndex < this.numberOfFrames - 1) {
-          this.frameIndex++;
+        this.frameIndex += 1;
       } else {
-          this.frameIndex = 0;
+        this.frameIndex = 0;
       }
     }
   }
@@ -45,15 +44,15 @@ export default class Coin {
   render() {
     ctx.drawImage(
       this.image,
-      this.frameIndex * this.width / this.numberOfFrames,
+      (this.frameIndex * this.width) / this.numberOfFrames,
       0,
       this.width / this.numberOfFrames,
       this.height,
       this.x,
       this.y,
       this.width / this.numberOfFrames,
-      this.height
-    )
+      this.height,
+    );
   }
 
   playCoinSound() {

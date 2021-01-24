@@ -1,7 +1,8 @@
-import {ctx} from './index';
+/* eslint-disable linebreak-style */
+import { ctx } from './index';
 
-export class Text {
-  constructor (t, x, y, a, c, s) {
+export default class Text {
+  constructor(t, x, y, a, c, s) {
     this.t = t;
     this.x = x;
     this.y = y;
@@ -10,8 +11,7 @@ export class Text {
     this.s = s;
   }
 
- 
-  Draw () {
+  Draw() {
     ctx.beginPath();
     ctx.fillStyle = this.c;
     ctx.font = `${this.s}px sans-serif`;

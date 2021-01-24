@@ -1,9 +1,8 @@
-import {canvas, ctx} from './index.js';
-import {gameSpeed } from './start_game';
-
+import { canvas, ctx } from './index.js';
+import { gameSpeed } from './start_game';
 
 export default class Cloud {
-  constructor (options) {
+  constructor(options) {
     this.x = canvas.width;
     this.sx = options.sx;
     this.sy = options.sy;
@@ -19,7 +18,7 @@ export default class Cloud {
     this.image.src = options.src;
   }
 
-  update () {
+  update() {
     this.x += this.dx;
     this.render();
   }
@@ -35,7 +34,6 @@ export default class Cloud {
       this.dy,
       this.dWidth,
       this.dHeight,
-    )
+    );
   }
-
 }

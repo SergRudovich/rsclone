@@ -26,15 +26,15 @@ export default function options() {
   <img src="img/sprite1_icon.png" class="player1" alt="player1">
   </div>
   <a class="btnflip start-help start" href="#">
-	  <span class="btnflip-item btnflip__front">${lang[lg].startGameBtn}</span>
-		<span class="btnflip-item btnflip__center"></span>
-		<span class="btnflip-item btnflip__back">${lang[lg].startGameBtn}</span>
+  <span class="btnflip-item btnflip__front">${lang[lg].startGameBtn}</span>
+  <span class="btnflip-item btnflip__center"></span>
+  <span class="btnflip-item btnflip__back">${lang[lg].startGameBtn}</span>
 </a>
 
 <a class="btnflip options-help help" href="#">
-		<span class="btnflip-item btnflip__front">${lang[lg].helpBtn}</span>
-		<span class="btnflip-item btnflip__center"></span>
-		<span class="btnflip-item btnflip__back">${lang[lg].helpBtn}</span>
+  <span class="btnflip-item btnflip__front">${lang[lg].helpBtn}</span>
+  <span class="btnflip-item btnflip__center"></span>
+  <span class="btnflip-item btnflip__back">${lang[lg].helpBtn}</span>
 </a>
   `;
   document.querySelector('#selectLang > option[selected]').removeAttribute('selected');

@@ -13,21 +13,21 @@ export default function main() {
   page.classList.add('page', 'page-image');
   page.innerHTML = `
 <a class="btnflip start-main start" href="#">
-		<span class="btnflip-item btnflip__front">${lang[lg].startGameBtn}</span>
-		<span class="btnflip-item btnflip__center"></span>
-		<span class="btnflip-item btnflip__back">${lang[lg].startGameBtn}</span>
+  <span class="btnflip-item btnflip__front">${lang[lg].startGameBtn}</span>
+  <span class="btnflip-item btnflip__center"></span>
+  <span class="btnflip-item btnflip__back">${lang[lg].startGameBtn}</span>
 </a>
 
 <a class="btnflip options-main options" href="#">
-		<span class="btnflip-item btnflip__front">${lang[lg].optionsBtn}</span>
-		<span class="btnflip-item btnflip__center"></span>
-		<span class="btnflip-item btnflip__back">${lang[lg].optionsBtn}</span>
+  <span class="btnflip-item btnflip__front">${lang[lg].optionsBtn}</span>
+  <span class="btnflip-item btnflip__center"></span>
+  <span class="btnflip-item btnflip__back">${lang[lg].optionsBtn}</span>
 </a>
 
-<a class="btnflip help-main help" href="#">
-		<span class="btnflip-item btnflip__front">${lang[lg].helpBtn}</span>
-		<span class="btnflip-item btnflip__center"></span>
-		<span class="btnflip-item btnflip__back">${lang[lg].helpBtn}</span>
+<a class="btnflip help-main help" href="#">  
+  <span class="btnflip-item btnflip__front">${lang[lg].helpBtn}</span>
+  <span class="btnflip-item btnflip__center"></span>
+  <span class="btnflip-item btnflip__back">${lang[lg].helpBtn}</span>
 </a>
 
   `;

@@ -1,5 +1,5 @@
 import Hero from './hero';
-import { Text } from './text';
+import Text from './text';
 import { SpawnObstacle } from './spawn_obstacle';
 import { canvas, ctx } from './index';
 import { createSnowFlakes, updateSnowFall } from './snow_flakes';
@@ -8,13 +8,16 @@ import { getCoin, coinsCounter } from './get_coin';
 import getClouds from './get_clouds';
 import { lang } from './lang';
 import getPlatform from './get_platform';
+import main from './pages/main';
+import { dead } from './pages/dead';
+import gameOver from './pages/game-over';
 
-let gravity;
+// let lives;
 let score;
 let highScore;
 let scoreText;
 let hightScoreText;
-
+let livesText;
 let gameSpeed;
 let player;
 let obstacles = [];
@@ -22,7 +25,6 @@ const coins = [];
 
 const keys = {};
 let coinImage;
-// const jumpTrue = false;
 const playSound = new GameSound();
 
 function start() {
@@ -40,8 +42,7 @@ function start() {
   ctx.font = '20px sans-serif';
 
   gameSpeed = 3;
-  // gravity = 1;
-
+  // lives = 3;
   score = 0;
   highScore = 0;
 
@@ -63,12 +64,13 @@ function start() {
     test: canvas.height,
   });
 
-  // window.onload = function () {
   player.start();
-  // };
 
   scoreText = new Text(
     `${lang[localStorage.getItem('langSelected')].scoreTxt} ${score}`, 25, 25, 'left', '#212121', '20',
+  );
+  livesText = new Text(
+    `${lang[localStorage.getItem('langSelected')].livesTxt} ${localStorage.getItem('lives')}`, 500, 25, 'right', '#212121', '20',
   );
   hightScoreText = new Text(
     `${lang[localStorage.getItem('langSelected')].bestScoreTxt} ${highScore}`, canvas.width - 25, 25, 'right', '#212121', '20',
@@ -83,18 +85,16 @@ const initialSpawnTimer = 200;
 let spawnTimer = initialSpawnTimer;
 
 function Update() {
-  requestAnimationFrame(Update);
+  if (localStorage.getItem('animate') === 'true') requestAnimationFrame(Update);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   // выключить фоновую музыку
   if (keys.KeyQ) {
-    // window.gameState.isFonSound = false;
     playSound.stopFon();
   }
 
   // включить фоновую музыку
   if (keys.KeyA) {
-    // window.gameState.isFonSound = true;
     playSound.playFon();
   }
 
@@ -126,10 +126,19 @@ function Update() {
       && player.y < o.y + o.height
       && player.y + player.height >= o.y
     ) {
-      // playSound.playDead();
+      playSound.playDead();
       obstacles = [];
       gameSpeed = 3;
+      localStorage.setItem('lives', localStorage.getItem('lives') - 1);
+      if (localStorage.getItem('lives') == 0) {
+        gameOver();
+      } else {
+        dead.show();
+      }
+      livesText.t = `${lang[localStorage.getItem('langSelected')].livesTxt} ${localStorage.getItem('lives')}`;
       score = 0;
+      player.dx = 0;
+      player.y = 0;
       coinsCounter.counter = 0;
       spawnTimer = initialSpawnTimer;
       window.localStorage.setItem('highscore', highScore);
@@ -149,6 +158,7 @@ function Update() {
 
   gameSpeed += 0.003;
   hightScoreText.Draw();
+  livesText.Draw();
 
   // spawn platform
   getPlatform();
@@ -161,5 +171,5 @@ function Update() {
 }
 
 export {
-  start, gameSpeed, obstacles, keys, score, player, coins,
+  start, Update, gameSpeed, obstacles, keys, score, player, coins,
 };
