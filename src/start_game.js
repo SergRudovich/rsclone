@@ -22,7 +22,7 @@ const coins = [];
 
 const keys = {};
 let coinImage;
-const jumpTrue = false;
+// const jumpTrue = false;
 const playSound = new GameSound();
 
 function start() {
@@ -40,7 +40,7 @@ function start() {
   ctx.font = '20px sans-serif';
 
   gameSpeed = 3;
-  gravity = 1;
+  // gravity = 1;
 
   score = 0;
   highScore = 0;
@@ -50,7 +50,7 @@ function start() {
   }
 
   coinImage = new Image();
-  coinImage.src = 'images/sprite2.png';
+  coinImage.src = localStorage.getItem('SpriteImage');
 
   player = new Hero({
     image: coinImage,

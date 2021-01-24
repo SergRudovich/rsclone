@@ -11,6 +11,7 @@ const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 
 if (!localStorage.getItem('langSelected')) localStorage.setItem('langSelected', 'en');
+if (!localStorage.getItem('SpriteImage')) localStorage.setItem('SpriteImage', 'images/sprite2.png');
 
 // window.gameState = {
 //   soundUrl: '.././dist/sound/',
