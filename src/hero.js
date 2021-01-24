@@ -1,7 +1,7 @@
 import { canvas, ctx } from './index';
 import { keys } from './start_game';
 import PlayerSound from './player-sound';
-import main from './pages/main';
+import { dead } from './pages/dead';
 export default class Hero {
   constructor(options) {
     this.image = options.image;
@@ -92,6 +92,7 @@ export default class Hero {
     } else {
       this.dy = 0;
       this.grounded = true;
+      // dead.hide();
       this.numberOfFrames = 6;
       if (this.isLeft) {
         this.sx = 100;
@@ -151,7 +152,7 @@ export default class Hero {
       this.gravityGo();
       this.getReadyToJump();
 
-      window.requestAnimationFrame(loop);
+      if (localStorage.getItem('animate') === 'true') window.requestAnimationFrame(loop);
     };
     this.image.onload = () => {
       window.requestAnimationFrame(loop);

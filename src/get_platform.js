@@ -6,33 +6,30 @@ import getRandomInt from './get_random_int';
 let platform;
 
 let randTime;
-let platformRandTime = [200, 220, 250, 300];
+const platformRandTime = [200, 220, 250, 300];
 
-let platforms = [];
-let platformsOptions = [
+const platforms = [];
+const platformsOptions = [
   {
-    src: `images/platforma1.png`,
+    src: 'images/platforma1.png',
     width: 495,
     height: 115,
     flightAltitude: 250,
   },
   {
-    src: `images/platforma2.png`,
+    src: 'images/platforma2.png',
     width: 280,
     height: 115,
     flightAltitude: 300,
-  }
+  },
 ];
 
-
-export default function getPlatform(){
-
-  if(score % 200 == 0){
+export default function getPlatform() {
+  if (score % 200 === 0) {
     randTime = platformRandTime[getRandomInt(0, 4)];
   }
-  
-  if(score % randTime == 0){    
 
+  if (score % randTime === 0) {
     let type = getRandomInt(0, 2);
     type = platformsOptions[type];
 
@@ -42,17 +39,16 @@ export default function getPlatform(){
       flightAltitude: type.flightAltitude,
       width: type.width,
       height: type.height,
-      gameSpeed: gameSpeed,
+      gameSpeed,
       imageSrc: type.src,
     });
 
     platforms.push(platform);
   }
 
-
   let flag = false;
 
-  for(let platform of platforms) {
+  for (const platform of platforms) {
     platform.update();
 
     if (
@@ -61,11 +57,9 @@ export default function getPlatform(){
     ) {
       player.test = canvas.height - platform.flightAltitude + 2;
       flag = true;
-    } else {
-      if (!flag) {
-        player.test = canvas.height;
-        flag = false;
-      }
+    } else if (!flag) {
+      player.test = canvas.height;
+      flag = false;
     }
   }
 }

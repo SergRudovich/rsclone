@@ -8,6 +8,7 @@
 canvas {
   display: block;
   background-color: #87ceeb;
+  z-index: -1;
 }
 
 .ground {
@@ -49,6 +50,11 @@ canvas {
 .page-image {
   background-image: url(img/fon.jpg);
   background-size: cover;
+}
+
+.game-over-image {
+  background-image: url(img/game-over.png);
+  background-size: contain;
 }
 
 .help-txt-wrapper {
@@ -94,7 +100,7 @@ canvas {
   border-radius: 30px;
   text-transform: uppercase;
   color: #fff;
-  transition: 1s;
+  transition: 0.5s;
 }
 
 .btnflip-item.btnflip__front {
@@ -164,6 +170,15 @@ canvas {
 
 .hidden {
   display: none;
+}
+
+.zindex {
+  z-index: 10000;
+  position: absolute;
+  top: 0;
+  left: 20%;
+  width: 50vw;
+  height: 10vh;
 }
 
 /* страница настроек */

@@ -2,6 +2,7 @@ const lang = {
   en: {
     scoreTxt: 'Score:',
     coinsTxt: 'Coins:',
+    livesTxt: 'Lives:',
     bestScoreTxt: 'Best score:',
     startGameBtn: 'Start Game',
     optionsBtn: 'Options',
@@ -20,6 +21,7 @@ const lang = {
   ru: {
     scoreTxt: 'Результат:',
     coinsTxt: 'Монеты:',
+    livesTxt: 'Жизни:',
     bestScoreTxt: 'Лучший результат:',
     startGameBtn: 'Начать игру',
     optionsBtn: 'Настройки',
@@ -38,6 +40,7 @@ const lang = {
   br: {
     scoreTxt: 'Вынік:',
     coinsTxt: 'Манеты:',
+    livesTxt: 'Жыцця:',
     bestScoreTxt: 'Лепшы вынік:',
     startGameBtn: 'Пачать ігру',
     optionsBtn: 'Опцыі',
