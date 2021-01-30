@@ -34,6 +34,7 @@ canvas {
   margin: 0;
   padding: 0;
   background-color: #87ceeb;
+  display: flex;
 }
 
 .page {
@@ -43,8 +44,17 @@ canvas {
   height: 97vh;
   margin-top: 10px;
   margin-left: 20vw;
+  display: flex;
 }
 
+.footer{
+  background-color: white;
+  opacity: 0.5;
+  width: 60vw;
+align-self: flex-end;
+display: flex;
+justify-content: center;
+}
 /* фоновое изображение */
 
 .page-image {
@@ -55,6 +65,19 @@ canvas {
 .game-over-image {
   background-image: url(img/game-over.png);
   background-size: contain;
+}
+
+.game-over {
+  background-color: white;
+  opacity: 0.8;
+  width: 50vw;
+  height: 25vh;
+  margin-top: 20vh;
+  margin-left: 4.4vw;
+  padding: 10px;
+  color: red;
+  text-align: center;
+  font-size: 2rem;
 }
 
 .help-txt-wrapper {
