@@ -10,8 +10,8 @@ export default function gameOver() {
   const page = document.querySelector('.page') || document.createElement('div');
   page.classList.add('page', 'game-over-image');
   page.innerHTML = `
-    <div class="help-txt-wrapper">
-    Вы проиграли. Кликни чтобы продолжить.
+    <div class="game-over">
+    ${lang[lg].gameOver}
     </div>
     `;
   pageWrapper.appendChild(page);

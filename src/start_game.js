@@ -15,8 +15,10 @@ import gameOver from './pages/game-over';
 // let lives;
 let score;
 let highScore;
+let highCoins;
 let scoreText;
 let hightScoreText;
+let hightCoinsText;
 let livesText;
 let gameSpeed;
 let player;
@@ -45,9 +47,13 @@ function start() {
   // lives = 3;
   score = 0;
   highScore = 0;
+  highCoins = 0;
 
   if (localStorage.getItem('highscore')) {
     highScore = localStorage.getItem('highscore');
+  }
+  if (localStorage.getItem('highCoins')) {
+    highCoins = localStorage.getItem('highCoins');
   }
 
   coinImage = new Image();
@@ -73,9 +79,11 @@ function start() {
     `${lang[localStorage.getItem('langSelected')].livesTxt} ${localStorage.getItem('lives')}`, 500, 25, 'right', '#212121', '20',
   );
   hightScoreText = new Text(
-    `${lang[localStorage.getItem('langSelected')].bestScoreTxt} ${highScore}`, canvas.width - 25, 25, 'right', '#212121', '20',
+    `${lang[localStorage.getItem('langSelected')].bestScoreTxt} ${highScore}`, canvas.width - 150, 25, 'right', '#212121', '20',
   );
-
+  hightCoinsText = new Text(
+    `${lang[localStorage.getItem('langSelected')].coinsTxt} ${highCoins}`, canvas.width - 25, 25, 'right', '#212121', '20',
+  );
   createSnowFlakes();
   // playSound.playFon();
   requestAnimationFrame(Update);
@@ -133,7 +141,7 @@ function Update() {
       if (localStorage.getItem('lives') == 0) {
         gameOver();
       } else {
-        dead.show();
+        // dead.show();
       }
       livesText.t = `${lang[localStorage.getItem('langSelected')].livesTxt} ${localStorage.getItem('lives')}`;
       score = 0;
@@ -142,6 +150,7 @@ function Update() {
       coinsCounter.counter = 0;
       spawnTimer = initialSpawnTimer;
       window.localStorage.setItem('highscore', highScore);
+      window.localStorage.setItem('highCoins', highCoins);
     }
     o.Update();
   }
@@ -156,8 +165,14 @@ function Update() {
     hightScoreText.t = `${lang[localStorage.getItem('langSelected')].bestScoreTxt} ${highScore}`;
   }
 
+  if (coinsCounter.counter > highCoins) {
+    highCoins = coinsCounter.counter;
+    hightCoinsText.t = `${lang[localStorage.getItem('langSelected')].coinsTxt} ${highCoins}`;
+  }
+
   gameSpeed += 0.003;
   hightScoreText.Draw();
+  hightCoinsText.Draw();
   livesText.Draw();
 
   // spawn platform

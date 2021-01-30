@@ -29,7 +29,18 @@ export default function main() {
   <span class="btnflip-item btnflip__center"></span>
   <span class="btnflip-item btnflip__back">${lang[lg].helpBtn}</span>
 </a>
-
+<footer class="footer">
+<strong>
+<a href="https://github.com/SergRudovich" target="blank">Sergey Rudovich</a>
+&nbsp|&nbsp
+<a href="https://github.com/conservativ007" target="blank">Maks conservativ007</a>
+<p style="text-align: center">
+<a href="https://rs.school/js/" target="blank">
+<img src="https://rs.school/images/rs_school_js.svg" alt="RS School" style="width: 50px"></a>
+<span class="footer__year">© 2021</span>
+</p>
+</strong>
+</footer>
   `;
 
   function startGame() {
